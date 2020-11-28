@@ -29,7 +29,7 @@ func main() {
 		if err != nil {
 			logger.Fatalln("Failed to run 'go version'")
 		}
-		fmt.Printf("%s\n", re.FindString(string(o)))
+		fmt.Printf("%s\n", re.Find(o))
 	} 
 }
 
