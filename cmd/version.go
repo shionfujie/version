@@ -15,7 +15,7 @@ func main() {
 	logger.FatalfIf(len(os.Args) < 2, "Subcommand name argument expected")
 	subcommand := os.Args[1]
 	switch subcommand {
-	case "scala-compiler":
+	case "scala", "scala-compiler":
 		re := regexp.MustCompile(`[\d]+\.[\d]+\.[\d]+`)
 		basename := filepath.Base(os.Getenv("SCALA_HOME"))
 		fmt.Printf("%s\n", re.FindString(basename))
