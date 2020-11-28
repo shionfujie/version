@@ -13,7 +13,7 @@ import (
 var semverRe = regexp.MustCompile(`[\d]+\.[\d]+\.[\d]+`)
 
 func main() {
-	logger := New(os.Stdout, "new: ", 0)
+	logger := New(os.Stdout, "version: ", 0)
 
 	logger.FatalfIf(len(os.Args) < 2, "Subcommand name argument expected")
 	subcommand := os.Args[1]
