@@ -19,7 +19,7 @@ func main() {
 	switch subcommand {
 	case "scala", "scala-compiler":
 		basename := filepath.Base(os.Getenv("SCALA_HOME"))
-		fmt.Printf("%s\n", re.FindString(basename))
+		fmt.Println(re.FindString(basename))
 	case "go":
 		logger.SetPrefix("version go: ")
 		if _, err := exec.LookPath("go"); err != nil {
