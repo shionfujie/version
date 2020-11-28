@@ -10,16 +10,17 @@ import (
 	"regexp"
 )
 
+var semverRe = regexp.MustCompile(`[\d]+\.[\d]+\.[\d]+`)
+
 func main() {
 	logger := New(os.Stdout, "new: ", 0)
 
 	logger.FatalfIf(len(os.Args) < 2, "Subcommand name argument expected")
 	subcommand := os.Args[1]
-	re := regexp.MustCompile(`[\d]+\.[\d]+\.[\d]+`)
 	switch subcommand {
 	case "scala", "scala-compiler":
 		basename := filepath.Base(os.Getenv("SCALA_HOME"))
-		fmt.Println(re.FindString(basename))
+		fmt.Println(semverRe.FindString(basename))
 	case "go":
 		logger.SetPrefix("version go: ")
 		if _, err := exec.LookPath("go"); err != nil {
@@ -29,7 +30,7 @@ func main() {
 		if err != nil {
 			logger.Fatalln("Failed to run 'go version'")
 		}
-		fmt.Printf("%s\n", re.Find(o))
+		fmt.Printf("%s\n", semverRe.Find(o))
 	} 
 }
 
